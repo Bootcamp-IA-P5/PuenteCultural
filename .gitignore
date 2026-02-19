@@ -30,3 +30,7 @@ yarn-error.log*
 # --- Data & Logs ---
 data/processed/  # Opcional: si los vectores son muy pesados, no se suben
 *.log
+
+# --- Local Metadata ---
+.vscode/
+AI_CONTEXT_MASTER.md
