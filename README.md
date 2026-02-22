@@ -10,9 +10,9 @@ Plataforma SaaS con Agentes de IA para inclusión educativa y adaptación cultur
 	- Copia `frontend/.env.example` a `frontend/.env`
 	- Verifica `VITE_API_URL=http://127.0.0.1:8000`
 4. Ejecuta frontend:
-	- `npm run dev`
+	- `npm run dev -- --host 127.0.0.1 --port 5180`
 
-Interfaz disponible en `http://127.0.0.1:5173`.
+Interfaz disponible en `http://127.0.0.1:5180`.
 
 ## Backend (LLM real)
 
@@ -45,8 +45,25 @@ Interfaz disponible en `http://127.0.0.1:5173`.
 
 Terminal 1 (backend):
 - `cd backend`
-- `./venv/Scripts/python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000`
+- `.\venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000`
 
 Terminal 2 (frontend):
 - `cd frontend`
-- `npm run dev -- --host 127.0.0.1 --port 5173`
+- `npm run dev -- --host 127.0.0.1 --port 5180`
+
+## Checklist pre-despliegue
+
+- Backend activo en `http://127.0.0.1:8000`.
+- Frontend apuntando a backend con `VITE_API_URL=http://127.0.0.1:8000`.
+- `backend/.env` con claves reales del proveedor LLM elegido.
+- CORS local habilitado para `http://127.0.0.1:5173` y `http://127.0.0.1:5180`.
+
+## Build de producción
+
+- Frontend:
+	- `cd frontend`
+	- `npm run build`
+
+- Backend (smoke check):
+	- `cd backend`
+	- `.\venv\Scripts\python.exe -m uvicorn app.main:app --host 0.0.0.0 --port 8000`
