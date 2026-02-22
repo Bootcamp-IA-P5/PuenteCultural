@@ -13,11 +13,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Copiamos primero los requirements para aprovechar la caché de Docker
+# Copiamos requirements (Como el archivo está en la misma carpeta que este Dockerfile, funciona directo)
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiamos el resto del código del backend
+# Copiamos todo el contenido de la carpeta actual (backend) al contenedor
 COPY . .
 
 # Exponemos el puerto 8080 (DigitalOcean lo prefiere así)
