@@ -51,6 +51,23 @@ Terminal 2 (frontend):
 - `cd frontend`
 - `npm run dev -- --host 127.0.0.1 --port 5180`
 
+## Docker (un solo comando)
+
+Backend y frontend corren en contenedores separados, pero se levantan juntos con un solo comando.
+
+- Construir y levantar:
+	- `docker compose up --build -d`
+
+- Ver logs:
+	- `docker compose logs -f`
+
+- Detener:
+	- `docker compose down`
+
+Puertos:
+- Frontend: `http://127.0.0.1:5180`
+- Backend (health): `http://127.0.0.1:8000/health`
+
 ## Checklist pre-despliegue
 
 - Backend activo en `http://127.0.0.1:8000`.
