@@ -1,8 +1,12 @@
-const rawApiBase = import.meta.env.VITE_API_URL
-const API_BASE_URL = rawApiBase === undefined ? 'http://127.0.0.1:8000' : rawApiBase.replace(/\/+$/, '')
+// En producción (DigitalOcean con rutas configuradas), usamos la misma URL base
+const API_BASE_URL = import.meta.env.VITE_API_URL || window.location.origin
 
 export async function generateGuide(payload) {
-    const response = await fetch(`${API_BASE_URL}/api/v1/generate`, {
+    // Si API_BASE_URL ya incluye '/api', no lo duplicamos. 
+    // Pero según tu configuración de DO, el prefijo es /api
+    const url = `${API_BASE_URL}/api/v1/generate`
+
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -17,6 +17,8 @@ app.add_middleware(
 		"http://localhost:5173",
 		"http://127.0.0.1:5180",
 		"http://localhost:5180",
+		"https://puenteculturalapp-kd3mi.ondigitalocean.app",
+		"*", # Temporal para asegurar conexión
 	],
 	allow_credentials=True,
 	allow_methods=["*"],
